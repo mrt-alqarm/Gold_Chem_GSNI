@@ -53,14 +53,45 @@
             -webkit-text-fill-color: transparent; 
         }
         
-        .subtitle { 
-            text-align: center; 
-            color: #7f8c8d; 
-            font-size: 1.2em; 
-            margin-bottom: 40px; 
-            padding: 10px; 
-            background: #f8f9fa; 
-            border-radius: 10px; 
+        .subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1.2em;
+            margin-bottom: 40px;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        /* أزرار اللغة */
+        .language-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .lang-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn.active {
+            background: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        .lang-btn:hover {
+            background: #2980b9;
         }
         
         .chart-container { 
@@ -227,8 +258,17 @@
 </head>
 <body>
     <div class="container">
-        <h1>🧠 النموذج الرياضي الدقيق: الوهم الكيميائي كآلية تعويض مجتمعي</h1>
-        <p class="subtitle">تحليل ثلاثي الأبعاد (1990-2025) يوثق العلاقة العكسية الرياضية بين انهيار الدخل الحقيقي بالذهب وصعود مؤشر التخدير المجتمعي الموحد (GSNI)</p>
+        <h1 data-key="main_title">🧠 النموذج الرياضي الدقيق: الوهم الكيميائي كآلية تعويض مجتمعي</h1>
+        <p class="subtitle" data-key="subtitle">تحليل ثلاثي الأبعاد (1990-2025) يوثق العلاقة العكسية الرياضية بين انهيار الدخل الحقيقي بالذهب وصعود مؤشر التخدير المجتمعي الموحد (GSNI)</p>
+
+        <!-- أزرار اختيار اللغة -->
+        <div class="language-selector">
+            <button id="lang-ar" class="lang-btn active">العربية</button>
+            <button id="lang-fa" class="lang-btn">فارسی</button>
+            <button id="lang-en" class="lang-btn">English</button>
+            <button id="lang-fr" class="lang-btn">Français</button>
+            <button id="lang-zh" class="lang-btn">中文</button>
+        </div>
 
         <!-- رسم بياني رئيسي -->
         <div class="chart-container">
@@ -237,16 +277,16 @@
 
         <!-- تفسير المحاور -->
         <div class="chart-explanation">
-            <h4>📐 تفسير المحاور والرموز:</h4>
+            <h4 data-key="chart_explanation_title">📐 تفسير المحاور والرموز:</h4>
             
             <div class="axis-explanation">
                 <div class="axis-item">
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
                         <span class="color-indicator" style="background: #3498db;"></span>
-                        <div><strong>الأجر اليومي (الخط الأزرق):</strong></div>
+                        <div><strong data-key="axis_wage">الأجر اليومي (الخط الأزرق):</strong></div>
                     </div>
-                    <div style="font-size: 0.9em; padding-right: 10px;">
-                        يقاس بـ <strong>غرام ذهب/يوم عمل</strong>. 
+                    <div style="font-size: 0.9em; padding-right: 10px;" data-key="axis_wage_desc">
+                        يقاس بـ <strong>غرام ذهب/يوم عمل</strong>.
                         القيمة الظاهرة مضروبة في عامل تحويل لمقارنتها مع GSNI على نفس المحور.
                     </div>
                 </div>
@@ -254,10 +294,10 @@
                 <div class="axis-item">
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
                         <span class="color-indicator" style="background: #e74c3c;"></span>
-                        <div><strong>مؤشر GSNI (الخط الأحمر):</strong></div>
+                        <div><strong data-key="axis_gsni">مؤشر GSNI (الخط الأحمر):</strong></div>
                     </div>
-                    <div style="font-size: 0.9em; padding-right: 10px;">
-                        مقياس نسبي بدون وحدة، سنة الأساس 1970 = 1.0. 
+                    <div style="font-size: 0.9em; padding-right: 10px;" data-key="axis_gsni_desc">
+                        مقياس نسبي بدون وحدة، سنة الأساس 1970 = 1.0.
                         يجمع أربعة أبعاد موزونة من الوهم الكيميائي والرقمي.
                     </div>
                 </div>
@@ -265,17 +305,17 @@
                 <div class="axis-item">
                     <div style="display: flex; align-items: center; margin-bottom: 8px;">
                         <span class="color-indicator" style="background: #f39c12; border-bottom: 2px dashed #f39c12;"></span>
-                        <div><strong>سعر الذهب (الخط البرتقالي المتقطع):</strong></div>
+                        <div><strong data-key="axis_gold">سعر الذهب (الخط البرتقالي المتقطع):</strong></div>
                     </div>
-                    <div style="font-size: 0.9em; padding-right: 10px;">
-                        يقاس بـ <strong>$/غرام ÷ 10</strong> (مقسوم على 10 لملاءمة الرسم). 
+                    <div style="font-size: 0.9em; padding-right: 10px;" data-key="axis_gold_desc">
+                        يقاس بـ <strong>$/غرام ÷ 10</strong> (مقسوم على 10 لملاءمة الرسم).
                         يظهر على المحور الأيمن.
                     </div>
                 </div>
             </div>
             
-            <div style="background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 0.9em;">
-                <strong>ملاحظة تقنية:</strong> المحور الصادي الأيسر (0-55) يتسع لأعلى قيمة للأجر اليومي 
+            <div style="background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 5px; margin-top: 10px; font-size: 0.9em;" data-key="chart_note">
+                <strong>ملاحظة تقنية:</strong> المحور الصادي الأيسر (0-55) يتسع لأعلى قيمة للأجر اليومي
                 (50.2 غرام ذهب في 1970) بعد تطبيعها للرسم مع GSNI. القيمة الحقيقية للأجر تظهر في الجدول والأداة المنبثقة.
             </div>
         </div>
@@ -284,52 +324,52 @@
         <div style="display: flex; justify-content: space-around; text-align: center; flex-wrap: wrap; gap: 20px; margin: 40px 0;">
             <div style="flex: 1; min-width: 200px; padding: 25px; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border-radius: 12px; box-shadow: 0 5px 15px rgba(52, 152, 219, 0.2);">
                 <div style="font-size: 2.8em; font-weight: bold; color: var(--accent-blue); margin-bottom: 10px;">-98.6%</div>
-                <div style="font-weight: bold; color: var(--primary-blue); font-size: 1.1em;">انهيار الدخل الحقيقي</div>
-                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;">الأجر اليومي بالذهب (1970-2025)</div>
+                <div style="font-weight: bold; color: var(--primary-blue); font-size: 1.1em;" data-key="indicator_decline">انهيار الدخل الحقيقي</div>
+                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;" data-key="indicator_decline_desc">الأجر اليومي بالذهب (1970-2025)</div>
             </div>
             <div style="flex: 1; min-width: 200px; padding: 25px; background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); border-radius: 12px; box-shadow: 0 5px 15px rgba(231, 76, 60, 0.2);">
                 <div style="font-size: 2.8em; font-weight: bold; color: var(--accent-red); margin-bottom: 10px;">×42.3</div>
-                <div style="font-weight: bold; color: #c0392b; font-size: 1.1em;">صعود مؤشر GSNI</div>
-                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;">زيادة مؤشر الوهم الكيميائي الموحد (1970-2025)</div>
+                <div style="font-weight: bold; color: #c0392b; font-size: 1.1em;" data-key="indicator_gsni">صعود مؤشر GSNI</div>
+                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;" data-key="indicator_gsni_desc">زيادة مؤشر الوهم الكيميائي الموحد (1970-2025)</div>
             </div>
             <div style="flex: 1; min-width: 200px; padding: 25px; background: linear-gradient(135deg, #fff8e1 0%, #ffeaa7 100%); border-radius: 12px; box-shadow: 0 5px 15px rgba(243, 156, 18, 0.2);">
                 <div style="font-size: 2.8em; font-weight: bold; color: var(--accent-gold); margin-bottom: 10px;">×108</div>
-                <div style="font-weight: bold; color: #d35400; font-size: 1.1em;">ارتفاع سعر الذهب</div>
-                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;">زيادة سعر غرام الذهب بالدولار (1970-2025)</div>
+                <div style="font-weight: bold; color: #d35400; font-size: 1.1em;" data-key="indicator_gold">ارتفاع سعر الذهب</div>
+                <div style="font-size: 0.9em; margin-top: 8px; opacity: 0.8;" data-key="indicator_gold_desc">زيادة سعر غرام الذهب بالدولار (1970-2025)</div>
             </div>
         </div>
 
         <!-- معادلة GSNI -->
         <div class="gsni-formula">
-            <h3>📐 المعادلة الرياضية لمؤشر الوهم الكيميائي الموحد (GSNI)</h3>
+            <h3 data-key="formula_title">📐 المعادلة الرياضية لمؤشر الوهم الكيميائي الموحد (GSNI)</h3>
             <div style="text-align: center; margin: 20px 0;">
                 <div style="font-size: 1.5em; font-weight: bold; color: var(--primary-blue);">
                     GSNI<sub>t</sub> = Σ (w<sub>i</sub> × I<sub>i,t</sub>)
                 </div>
             </div>
             <p style="text-align: center; margin: 15px 0;">
-                <span class="dimension-label" style="background: linear-gradient(to right, #e3f2fd, #bbdefb); color: #2980b9; border: 1px solid #3498db;">w₁ = 0.35 (أدوية قانونية)</span>
-                <span class="dimension-label" style="background: linear-gradient(to right, #e8f5e9, #c8e6c9); color: #27ae60; border: 1px solid #2ecc71;">w₂ = 0.30 (وهم رقمي)</span>
-                <span class="dimension-label" style="background: linear-gradient(to right, #f3e5f5, #e1bee7); color: #8e44ad; border: 1px solid #9b59b6;">w₃ = 0.25 (مخدرات غير مشروعة)</span>
-                <span class="dimension-label" style="background: linear-gradient(to right, #fff8e1, #ffeaa7); color: #d35400; border: 1px solid #f39c12;">w₄ = 0.10 (وهم غذائي)</span>
+                <span class="dimension-label" style="background: linear-gradient(to right, #e3f2fd, #bbdefb); color: #2980b9; border: 1px solid #3498db;" data-key="w1_label">w₁ = 0.35 (أدوية قانونية)</span>
+                <span class="dimension-label" style="background: linear-gradient(to right, #e8f5e9, #c8e6c9); color: #27ae60; border: 1px solid #2ecc71;" data-key="w2_label">w₂ = 0.30 (وهم رقمي)</span>
+                <span class="dimension-label" style="background: linear-gradient(to right, #f3e5f5, #e1bee7); color: #8e44ad; border: 1px solid #9b59b6;" data-key="w3_label">w₃ = 0.25 (مخدرات غير مشروعة)</span>
+                <span class="dimension-label" style="background: linear-gradient(to right, #fff8e1, #ffeaa7); color: #d35400; border: 1px solid #f39c12;" data-key="w4_label">w₄ = 0.10 (وهم غذائي)</span>
             </p>
-            <p class="footnote" style="text-align: center; margin-top: 10px;">
+            <p class="footnote" style="text-align: center; margin-top: 10px;" data-key="formula_footnote">
                 حيث: I<sub>i,t</sub> = مؤشر البعد i في السنة t (يقيس سهولة الوصول والانتشار) | w<sub>i</sub> = الوزن النسبي للبعد
             </p>
         </div>
 
         <!-- جدول البيانات -->
-        <h2>📊 الجدول الشامل: بيانات الأجر اليومي الحقيقي بالذهب ومؤشر GSNI (1970-2025)</h2>
+        <h2 data-key="table_title">📊 الجدول الشامل: بيانات الأجر اليومي الحقيقي بالذهب ومؤشر GSNI (1970-2025)</h2>
         <div class="highlight-box">
             <table>
                 <thead>
                     <tr>
-                        <th>السنة</th>
-                        <th>سعر الذهب<br>($/أونصة)</th>
-                        <th>الأجر اليومي<br>(غرام ذهب)</th>
-                        <th>مؤشر GSNI</th>
-                        <th>النسبة<br>GSNI/الأجر اليومي</th>
-                        <th>القيمة الحقيقية<br>المتبقية</th>
+                        <th data-key="th_year">السنة</th>
+                        <th data-key="th_gold_price">سعر الذهب<br>($/أونصة)</th>
+                        <th data-key="th_daily_wage">الأجر اليومي<br>(غرام ذهب)</th>
+                        <th data-key="th_gsni">مؤشر GSNI</th>
+                        <th data-key="th_ratio">النسبة<br>GSNI/الأجر اليومي</th>
+                        <th data-key="th_remaining">القيمة الحقيقية<br>المتبقية</th>
                     </tr>
                 </thead>
                 <tbody id="dataTableBody">
@@ -340,72 +380,72 @@
 
         <!-- الاستنتاجات -->
         <div class="conclusion">
-            <h3>🏁 الاستنتاجات الرياضية القاطعة</h3>
-            <p><strong>1. كارثة القيمة الحقيقية:</strong> انخفاض الأجر اليومي الحقيقي من <strong>50.2 غرام ذهب</strong> (1970) إلى <strong>0.72 غرام ذهب</strong> فقط (2025).</p>
-            <p><strong>2. نسبة الانهيار:</strong> فقدان <strong>98.6%</strong> من القيمة الحقيقية للأجر خلال 55 سنة.</p>
-            <p><strong>3. آلية التعويض المتسارعة:</strong> صعود مؤشر GSNI من <strong>1.0</strong> إلى <strong>42.3</strong> (زيادة 4130%).</p>
-            <p><strong>4. الصدمة الرياضية:</strong> في 1970، كان الأجر اليومي يساوي <strong>50 ضعف</strong> وحدة GSNI. في 2025، أصبح GSNI يساوي <strong>58.75 ضعف</strong> الأجر اليومي.</p>
-            <p><strong>5. المعادلة النهائية:</strong> لكل 1% فقدان في الأجر الحقيقي، هناك <strong>42 وحدة وهم كيميائي</strong> إضافية.</p>
+            <h3 data-key="conclusion_title">🏁 الاستنتاجات الرياضية القاطعة</h3>
+            <p data-key="conclusion_1"><strong>1. كارثة القيمة الحقيقية:</strong> انخفاض الأجر اليومي الحقيقي من <strong>50.2 غرام ذهب</strong> (1970) إلى <strong>0.72 غرام ذهب</strong> فقط (2025).</p>
+            <p data-key="conclusion_2"><strong>2. نسبة الانهيار:</strong> فقدان <strong>98.6%</strong> من القيمة الحقيقية للأجر خلال 55 سنة.</p>
+            <p data-key="conclusion_3"><strong>3. آلية التعويض المتسارعة:</strong> صعود مؤشر GSNI من <strong>1.0</strong> إلى <strong>42.3</strong> (زيادة 4130%).</p>
+            <p data-key="conclusion_4"><strong>4. الصدمة الرياضية:</strong> في 1970، كان الأجر اليومي يساوي <strong>50 ضعف</strong> وحدة GSNI. في 2025، أصبح GSNI يساوي <strong>58.75 ضعف</strong> الأجر اليومي.</p>
+            <p data-key="conclusion_5"><strong>5. المعادلة النهائية:</strong> لكل 1% فقدان في الأجر الحقيقي، هناك <strong>42 وحدة وهم كيميائي</strong> إضافية.</p>
         </div>
 
         <!-- ================== قسم منهجية GSNI الجديد ================== -->
         <div class="methodology-section" id="gsni-methodology">
-            <h2>🔬 المنهجية العلمية: تعريف وبناء مؤشر GSNI العالمي</h2>
-            <p class="subtitle">Gold-Standard Narcotization Index | مؤشر التخدير المعياري بالذهب</p>
-            
+            <h2 data-key="methodology_title">🔬 المنهجية العلمية: تعريف وبناء مؤشر GSNI العالمي</h2>
+            <p class="subtitle" data-key="methodology_subtitle">Gold-Standard Narcotization Index | مؤشر التخدير المعياري بالذهب</p>
+
             <div class="highlight-box">
-                <h3>🎯 الهدف من المؤشر</h3>
-                <p>يُعد مؤشر <strong>GSNI</strong> أداة قياس كمية مصممة لقياس <strong>فعالية وكفاءة "آلية التعويض الوهمي"</strong> التي تنتشر في المجتمعات الحديثة. لا يقيس المؤشر التكلفة المطلقة للوهم، بل يقيس <strong>سهولة وصول الأفراد إليه وقابليته للانتشار</strong> بناءً على انخفاض تكلفته الحقيقية مقاسة بالذهب.</p>
-                
+                <h3 data-key="target_title">🎯 الهدف من المؤشر</h3>
+                <p data-key="target_text">يُعد مؤشر <strong>GSNI</strong> أداة قياس كمية مصممة لقياس <strong>فعالية وكفاءة "آلية التعويض الوهمي"</strong> التي تنتشر في المجتمعات الحديثة. لا يقيس المؤشر التكلفة المطلقة للوهم، بل يقيس <strong>سهولة وصول الأفراد إليه وقابليته للانتشار</strong> بناءً على انخفاض تكلفته الحقيقية مقاسة بالذهب.</p>
+
                 <div class="key-finding">
-                    <h4>💡 الفرضية المركزية للمؤشر:</h4>
-                    <p>"كلما انخفضت التكلفة الحقيقية (المقاسة بالذهب) لأدوات الوهم الكيميائي/الرقمي، زادت قدرتها على الانتشار وفعاليتها كآلية تعويض مجتمعي عن انهيار القيمة الاقتصادية الحقيقية."</p>
+                    <h4 data-key="hypothesis_title">💡 الفرضية المركزية للمؤشر:</h4>
+                    <p data-key="hypothesis_text">"كلما انخفضت التكلفة الحقيقية (المقاسة بالذهب) لأدوات الوهم الكيميائي/الرقمي، زادت قدرتها على الانتشار وفعاليتها كآلية تعويض مجتمعي عن انهيار القيمة الاقتصادية الحقيقية."</p>
                 </div>
             </div>
             
             <!-- المخطط الدائري التفاعلي للنسب - الإصدار المصحح -->
             <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin: 30px 0;">
                 <div style="flex: 1; min-width: 300px;">
-                    <h3>🧩 مكونات المؤشر وأوزانها النسبية</h3>
-                    <p>تم تحديد الأوزان النسبية بناءً على تحليل <strong>التأثير المجتمعي التراكمي</strong> وسهولة الانتشار لكل قناة من قنوات الوهم:</p>
+                    <h3 data-key="components_title">🧩 مكونات المؤشر وأوزانها النسبية</h3>
+                    <p data-key="components_text">تم تحديد الأوزان النسبية بناءً على تحليل <strong>التأثير المجتمعي التراكمي</strong> وسهولة الانتشار لكل قناة من قنوات الوهم:</p>
                     
                     <div style="margin: 20px 0;">
                         <div class="dimension-breakdown">
                             <div class="dimension-item" style="background: linear-gradient(to right, #e3f2fd, #bbdefb); border-left-color: #3498db;">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <strong>الأدوية القانونية (35%)</strong>
-                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;">التخدير "المقنن" للقلق الناتج عن انهيار القيمة، والأكثر قبولاً اجتماعياً.</p>
+                                        <strong data-key="comp_legal_drugs">الأدوية القانونية (35%)</strong>
+                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;" data-key="comp_legal_drugs_desc">التخدير "المقنن" للقلق الناتج عن انهيار القيمة، والأكثر قبولاً اجتماعياً.</p>
                                     </div>
                                     <div style="background: #3498db; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">35%</div>
                                 </div>
                             </div>
-                            
+
                             <div class="dimension-item" style="background: linear-gradient(to right, #e8f5e9, #c8e6c9); border-left-color: #27ae60;">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <strong>الوهم الرقمي (30%)</strong>
-                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;">"تسييل الزمن" عبر إلهاء فعال ومنخفض التكلفة بشكل متزايد.</p>
+                                        <strong data-key="comp_digital_illusion">الوهم الرقمي (30%)</strong>
+                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;" data-key="comp_digital_illusion_desc">"تسييل الزمن" عبر إلهاء فعال ومنخفض التكلفة بشكل متزايد.</p>
                                     </div>
                                     <div style="background: #27ae60; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">30%</div>
                                 </div>
                             </div>
-                            
+
                             <div class="dimension-item" style="background: linear-gradient(to right, #f3e5f5, #e1bee7); border-left-color: #9b59b6;">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <strong>المخدرات غير المشروعة (25%)</strong>
-                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;">قناة الهروب النهائية للمستنزفين اقتصادياً، بتكلفة حقيقية متناقصة.</p>
+                                        <strong data-key="comp_illegal_drugs">المخدرات غير المشروعة (25%)</strong>
+                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;" data-key="comp_illegal_drugs_desc">قناة الهروب النهائية للمستنزفين اقتصادياً، بتكلفة حقيقية متناقصة.</p>
                                     </div>
                                     <div style="background: #9b59b6; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">25%</div>
                                 </div>
                             </div>
-                            
+
                             <div class="dimension-item" style="background: linear-gradient(to right, #fff8e1, #ffeaa7); border-left-color: #f39c12;">
                                 <div style="display: flex; justify-content: space-between; align-items: center;">
                                     <div>
-                                        <strong>الوهم الغذائي (سكر/معالجات) (10%)</strong>
-                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;">أساس التخدير اليومي المجتمعي، الأرخص تاريخياً والأكثر انتشاراً.</p>
+                                        <strong data-key="comp_food_illusion">الوهم الغذائي (سكر/معالجات) (10%)</strong>
+                                        <p style="margin: 5px 0 0 0; font-size: 0.9em; color: #555;" data-key="comp_food_illusion_desc">أساس التخدير اليومي المجتمعي، الأرخص تاريخياً والأكثر انتشاراً.</p>
                                     </div>
                                     <div style="background: #f39c12; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold;">10%</div>
                                 </div>
@@ -416,76 +456,78 @@
                 
                 <!-- القسم المصحح للمخطط الدائري -->
                 <div class="fixed-chart-container">
-                    <h4>التوزيع النسبي لمكونات GSNI</h4>
+                    <h4 data-key="pie_chart_title">التوزيع النسبي لمكونات GSNI</h4>
                     <div class="fixed-canvas-wrapper">
                         <canvas id="gsniPieChart"></canvas>
                     </div>
-                    <p class="footnote">مجموع الأوزان = 100% | تمثل النسبة التأثير المجتمعي النسبي</p>
+                    <p class="footnote" data-key="pie_chart_note">مجموع الأوزان = 100% | تمثل النسبة التأثير المجتمعي النسبي</p>
                 </div>
             </div>
             
             <!-- المعادلة الرياضية التفصيلية -->
             <div class="gsni-formula">
-                <h3>📐 الصيغة الرياضية الكاملة لمؤشر GSNي</h3>
-                
+                <h3 data-key="full_formula_title">📐 الصيغة الرياضية الكاملة لمؤشر GSNI</h3>
+
                 <div style="text-align: center; margin: 25px 0; padding: 20px; background: rgba(255,255,255,0.7); border-radius: 10px;">
                     <div style="font-size: 1.8em; font-weight: bold; color: var(--primary-blue); margin-bottom: 10px;">
                         GSNI<sub>t</sub> = Σ (w<sub>i</sub> × I<sub>i,t</sub>)
                     </div>
-                    <div style="font-size: 1.2em; margin-top: 15px;">
+                    <div style="font-size: 1.2em; margin-top: 15px;" data-key="formula_where">
                         حيث:
                         <div style="display: inline-block; text-align: left; margin-top: 10px;">
-                            <div>• <strong>GSNI<sub>t</sub></strong>: قيمة المؤشر في السنة <em>t</em></div>
-                            <div>• <strong>w<sub>i</sub></strong>: الوزن النسبي للبُعد <em>i</em> (كما في الجدول أعلاه)</div>
-                            <div>• <strong>I<sub>i,t</sub></strong>: مؤشر البُعد <em>i</em> في السنة <em>t</em>، ويُحسب كالتالي:</div>
-                            <div style="margin-left: 20px; font-size: 1em;">
+                            <div data-key="formula_gsni_t">• <strong>GSNI<sub>t</sub></strong>: قيمة المؤشر في السنة <em>t</em></div>
+                            <div data-key="formula_wi">• <strong>w<sub>i</sub></strong>: الوزن النسبي للبُعد <em>i</em> (كما في الجدول أعلاه)</div>
+                            <div data-key="formula_iit">• <strong>I<sub>i,t</sub></strong>: مؤشر البُعد <em>i</em> في السنة <em>t</em>، ويُحسب كالتالي:</div>
+                            <div style="margin-left: 20px; font-size: 1em;" data-key="formula_calc">
                                 I<sub>i,t</sub> = (الكمية المتاحة أو معدل الانتشار في السنة <em>t</em>) ÷ (الكمية المتاحة في السنة الأساس)
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <h4>🧮 مثال تطبيقي لحساب مؤشر بُعد الأدوية (2010):</h4>
+
+                <h4 data-key="example_title">🧮 مثال تطبيقي لحساب مؤشر بُعد الأدوية (2010):</h4>
                 <div style="background: white; padding: 15px; border-radius: 8px; border: 1px solid #ddd; margin: 15px 0;">
-                    <p>إذا كان <strong>سعر حبة دواء شائعة في 1990</strong> يعادل <strong>0.05 غرام ذهب</strong>،</p>
-                    <p>وأصبح <strong>نفس الدواء في 2010</strong> يعادل <strong>0.01 غرام ذهب</strong> فقط،</p>
-                    <p>فإن: <strong>I<sub>أدوية, 2010</sub> = 0.05 ÷ 0.01 = 5</strong></p>
-                    <p>بمعنى: أصبح الدواء <strong>أرخص 5 مرات</strong> (مقاسة بالذهب)، وبالتالي <strong>أكثر قابلية للانتشار 5 أضعاف</strong>.</p>
+                    <p data-key="example_text_1">إذا كان <strong>سعر حبة دواء شائعة في 1990</strong> يعادل <strong>0.05 غرام ذهب</strong>،</p>
+                    <p data-key="example_text_2">وأصبح <strong>نفس الدواء في 2010</strong> يعادل <strong>0.01 غرام ذهب</strong> فقط،</p>
+                    <p data-key="example_text_3">فإن: <strong>I<sub>أدوية, 2010</sub> = 0.05 ÷ 0.01 = 5</strong></p>
+                    <p data-key="example_text_4">بمعنى: أصبح الدواء <strong>أرخص 5 مرات</strong> (مقاسة بالذهب)، وبالتالي <strong>أكثر قابلية للانتشار 5 أضعاف</strong>.</p>
                 </div>
             </div>
             
             <!-- حدود المؤشر وتحذيرات -->
             <div class="alert-box">
-                <h3>⚠️ حدود المؤشر والتحذيرات المنهجية</h3>
-                
+                <h3 data-key="alerts_title">⚠️ حدود المؤشر والتحذيرات المنهجية</h3>
+
                 <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 15px;">
                     <div style="flex: 1; min-width: 200px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--accent-blue);">📈 البيانات التاريخية</div>
-                        <p>جودة المؤشر تعتمد على توفر بيانات تاريخية دقيقة لأسعار السلع والاستهلاك، والتي قد تكون ناقصة لبعض الفترات أو المناطق.</p>
+                        <div style="font-weight: bold; color: var(--accent-blue);" data-key="alert_data_title">📈 البيانات التاريخية</div>
+                        <p data-key="alert_data_text">جودة المؤشر تعتمد على توفر بيانات تاريخية دقيقة لأسعار السلع والاستهلاك، والتي قد تكون ناقصة لبعض الفترات أو المناطق.</p>
                     </div>
-                    
+
                     <div style="flex: 1; min-width: 200px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--accent-red);">🌍 التعميم الجغرافي</div>
-                        <p>البيانات الحالية تركز على الولايات المتحدة كـ "مختبر" للآلية. تعميم النتائج على مجتمعات أخرى يحتاج لتعديل الأوزان بناءً على السياق الثقافي والاقتصادي.</p>
+                        <div style="font-weight: bold; color: var(--accent-red);" data-key="alert_geo_title">🌍 التعميم الجغرافي</div>
+                        <p data-key="alert_geo_text">البيانات الحالية تركز على الولايات المتحدة كـ "مختبر" للآلية. تعميم النتائج على مجتمعات أخرى يحتاج لتعديل الأوزان بناءً على السياق الثقافي والاقتصادي.</p>
                     </div>
-                    
+
                     <div style="flex: 1; min-width: 200px; padding: 15px; background: rgba(255,255,255,0.7); border-radius: 8px;">
-                        <div style="font-weight: bold; color: var(--accent-gold);">🔍 القابلية للتحسين</div>
-                        <p>هذا المؤشر هو <strong>نموذج أولي كمي</strong> يهدف لإثارة النقاش ووضع إطار للقياس. الأوزان والمكونات قابلة للتعديل والتطوير من قبل الباحثين.</p>
+                        <div style="font-weight: bold; color: var(--accent-gold);" data-key="alert_improve_title">🔍 القابلية للتحسين</div>
+                        <p data-key="alert_improve_text">هذا المؤشر هو <strong>نموذج أولي كمي</strong> يهدف لإثارة النقاش ووضع إطار للقياس. الأوزان والمكونات قابلة للتعديل والتطوير من قبل الباحثين.</p>
                     </div>
                 </div>
-                
-                <p style="margin-top: 15px;"><strong>التعهد المنهجي:</strong> سيتم تحديث أوزان وعناصر المؤشر علناً مع تقدم البحث ونشر بيانات جديدة، مع الإبقاء على الشفافية الكاملة حول أي تغيير.</p>
+
+                <p style="margin-top: 15px;" data-key="pledge"><strong>التعهد المنهجي:</strong> سيتم تحديث أوزان وعناصر المؤشر علناً مع تقدم البحث ونشر بيانات جديدة، مع الإبقاء على الشفافية الكاملة حول أي تغيير.</p>
             </div>
         </div>
         <!-- ================== نهاية قسم منهجية GSNI ================== -->
 
         <!-- تذييل الصفحة -->
         <div class="footnote" style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
-            <p>تم تصميم هذا النموذج الرياضي الدقيق بنفس منهجية موقع <a href="https://mrt-alqarm.github.io/GoldOilp_us/" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;">"آلية الخسارة العالمية للقيمة الحقيقية"</a>.</p>
-            <p>🔄 <strong>GSNI = Gold-Standard Narcotization Index</strong> | مؤشر التخدير المعياري بالذهب</p>
-            <p>📅 <strong>آخر تحديث للبيانات:</strong> ديسمبر 2024 | <strong>الإصدار:</strong> 2.1 (بمنهجية موسعة)</p>
-            <p>📊 <strong>ملاحظة منهجية:</strong> جميع الحسابات معتمدة على الذهب كمرجع قيمي ثابت. القيم المالية مقومة بالدولار الأمريكي للأغراض التوثيقية فقط.</p>
+            <p data-key="acknowledgment_title">🤖 الاعتراف بالتعاون التقني</p>
+            <p data-key="acknowledgment_text">تم استخراج ومعالجة هذه البيانات وبناء النموذج الرياضي لمؤشر GSNI بالتعاون مع نموذج الذكاء الاصطناعي Gemini، لضمان الدقة الإحصائية والربط الموضوعي بين الأسواق المالية العالمية والبيانات البيولوجية والاجتماعية.</p>
+            <p data-key="footer_design">تم تصميم هذا النموذج الرياضي الدقيق بنفس منهجية موقع <a href="https://mrt-alqarm.github.io/GoldOilp_us/" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;" data-key="footer_link_text">"آلية الخسارة العالمية للقيمة الحقيقية"</a>.</p>
+            <p data-key="footer_gsni">🔄 <strong>GSNI = Gold-Standard Narcotization Index</strong> | مؤشر التخدير المعياري بالذهب</p>
+            <p data-key="footer_update">📅 <strong>آخر تحديث للبيانات:</strong> ديسمبر 2024 | <strong>الإصدار:</strong> 2.1 (بمنهجية موسعة)</p>
+            <p data-key="footer_note">📊 <strong>ملاحظة منهجية:</strong> جميع الحسابات معتمدة على الذهب كمرجع قيمي ثابت. القيم المالية مقومة بالدولار الأمريكي للأغراض التوثيقية فقط.</p>
         </div>
     </div>
 
@@ -504,6 +546,11 @@
             { year: 2020, goldPerOz: 1877.1, weeklyWageGold: 6.6, dailyWageGold: 1.32, gsni: 21.2 },
             { year: 2025, goldPerOz: 4207.2, weeklyWageGold: 3.6, dailyWageGold: 0.72, gsni: 42.3 }
         ];
+
+        // ================== دالة للحصول على الترجمة الحالية ==================
+        function getLang() {
+            return translations[currentLang] || translations['ar'] || {};
+        }
 
         // ================== ملء الجدول ==================
         function populateTable() {
@@ -528,10 +575,12 @@
                 if (d.year === 2025) rowColor = '#f3e5f5';
                 
                 row.style.backgroundColor = rowColor;
+                const unit = getLang().unit_gram || 'غرام';
+                console.log('currentLang:', currentLang, 'unit:', unit);
                 row.innerHTML = `
                     <td><strong>${d.year}</strong></td>
-                    <td>$${d.goldPerOz.toFixed(1)}</td>
-                    <td><strong>${d.dailyWageGold.toFixed(2)}</strong> غرام</td>
+                    <td>${d.goldPerOz.toFixed(1)}</td>
+                    <td><strong>${d.dailyWageGold.toFixed(2)}</strong> ${unit}</td>
                     <td style="font-weight: bold; color: ${d.gsni > 20 ? '#e74c3c' : (d.gsni > 10 ? '#e67e22' : '#2c3e50')}">
                         ${d.gsni.toFixed(2)}
                     </td>
@@ -547,194 +596,206 @@
         }
 
         // ================== الرسم البياني الرئيسي ==================
-       function renderMainChart() {
-    const ctx = document.getElementById('mainChart').getContext('2d');
-    const years = dailyWageData.map(d => d.year);
-    
-    // البيانات الحقيقية كما هي
-    const goldPriceData = dailyWageData.map(d => (d.goldPerOz / 31.1035) / 10);
-    const gsniData = dailyWageData.map(d => d.gsni);
-    const wageData = dailyWageData.map(d => d.dailyWageGold);
-    
-    new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: years,
-            datasets: [
-                {
-                    label: 'سعر الذهب ($/غرام ÷ 10)',
-                    data: goldPriceData,
-                    borderColor: '#f39c12',
-                    backgroundColor: 'rgba(243, 156, 18, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    yAxisID: 'y-right',
-                    pointRadius: 6,
-                    pointHoverRadius: 10,
-                    pointBackgroundColor: '#f39c12',
-                    borderDash: [5, 5]
+        function renderMainChart() {
+            const ctx = document.getElementById('mainChart').getContext('2d');
+            const years = dailyWageData.map(d => d.year);
+            
+            // البيانات الحقيقية كما هي
+            const goldPriceData = dailyWageData.map(d => (d.goldPerOz / 31.1035) / 10);
+            const gsniData = dailyWageData.map(d => d.gsni);
+            const wageData = dailyWageData.map(d => d.dailyWageGold);
+            
+            window.mainChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: years,
+                    datasets: [
+                        {
+                            label: 'سعر الذهب ($/غرام ÷ 10)',
+                            data: goldPriceData,
+                            borderColor: '#f39c12',
+                            backgroundColor: 'rgba(243, 156, 18, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            yAxisID: 'y-right',
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#f39c12',
+                            borderDash: [5, 5]
+                        },
+                        {
+                            label: 'مؤشر GSNI',
+                            data: gsniData,
+                            borderColor: '#e74c3c',
+                            backgroundColor: 'rgba(231, 76, 60, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.4,
+                            yAxisID: 'y-left',
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#e74c3c'
+                        },
+                        {
+                            label: 'الأجر اليومي (غرام ذهب)',
+                            data: wageData, // ⬅️ القيمة الحقيقية: 50.2 في 1970
+                            borderColor: '#3498db',
+                            backgroundColor: 'rgba(52, 152, 219, 0.1)',
+                            borderWidth: 3,
+                            tension: 0.3,
+                            yAxisID: 'y-left', // ⬅️ نفس محور GSNI
+                            pointRadius: 6,
+                            pointHoverRadius: 10,
+                            pointBackgroundColor: '#3498db'
+                        }
+                    ]
                 },
-                {
-                    label: 'مؤشر GSNI',
-                    data: gsniData,
-                    borderColor: '#e74c3c',
-                    backgroundColor: 'rgba(231, 76, 60, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.4,
-                    yAxisID: 'y-left',
-                    pointRadius: 6,
-                    pointHoverRadius: 10,
-                    pointBackgroundColor: '#e74c3c'
-                },
-                {
-                    label: 'الأجر اليومي (غرام ذهب)',
-                    data: wageData, // ⬅️ القيمة الحقيقية: 50.2 في 1970
-                    borderColor: '#3498db',
-                    backgroundColor: 'rgba(52, 152, 219, 0.1)',
-                    borderWidth: 3,
-                    tension: 0.3,
-                    yAxisID: 'y-left', // ⬅️ نفس محور GSNI
-                    pointRadius: 6,
-                    pointHoverRadius: 10,
-                    pointBackgroundColor: '#3498db'
-                }
-            ]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            interaction: { mode: 'index', intersect: false },
-            plugins: {
-                legend: { 
-                    position: 'top', 
-                    rtl: true, 
-                    labels: { 
-                        padding: 20, 
-                        usePointStyle: true,
-                        font: { size: 13, weight: 'bold' }
-                    }
-                },
-                tooltip: {
-                    rtl: true,
-                    backgroundColor: 'rgba(0, 0, 0, 0.85)',
-                    titleFont: { size: 13, weight: 'bold' },
-                    bodyFont: { size: 12 },
-                    padding: 12,
-                    cornerRadius: 8,
-                    callbacks: {
-                        label: function(context) {
-                            const yearIndex = context.dataIndex;
-                            const yearData = dailyWageData[yearIndex];
-                            
-                            if (context.datasetIndex === 0) {
-                                const goldPerGram = yearData.goldPerOz / 31.1035;
-                                return `سعر الذهب: $${goldPerGram.toFixed(2)}/غرام`;
-                            } else if (context.datasetIndex === 1) {
-                                return `مؤشر GSNI: ${context.parsed.y.toFixed(2)}`;
-                            } else {
-                                const gsniToWageRatio = (yearData.gsni / yearData.dailyWageGold).toFixed(1);
-                                return `الأجر اليومي: ${context.parsed.y.toFixed(2)} غرام ذهب (GSNI أعلى بـ ${gsniToWageRatio}×)`;
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    interaction: { mode: 'index', intersect: false },
+                    plugins: {
+                        legend: { 
+                            position: 'top', 
+                            rtl: true, 
+                            labels: { 
+                                padding: 20, 
+                                usePointStyle: true,
+                                font: { size: 13, weight: 'bold' }
+                            }
+                        },
+                        tooltip: {
+                            rtl: true,
+                            backgroundColor: 'rgba(0, 0, 0, 0.85)',
+                            titleFont: { size: 13, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            padding: 12,
+                            cornerRadius: 8,
+                            callbacks: {
+                                label: function(context) {
+                                    const yearIndex = context.dataIndex;
+                                    const yearData = dailyWageData[yearIndex];
+                                    
+                                    if (context.datasetIndex === 0) {
+                                        const goldPerGram = yearData.goldPerOz / 31.1035;
+                                        return `سعر الذهب: $${goldPerGram.toFixed(2)}/غرام`;
+                                    } else if (context.datasetIndex === 1) {
+                                        return `مؤشر GSNI: ${context.parsed.y.toFixed(2)}`;
+                                    } else {
+                                        const gsniToWageRatio = (yearData.gsni / yearData.dailyWageGold).toFixed(1);
+                                        return `الأجر اليومي: ${context.parsed.y.toFixed(2)} غرام ذهب (GSNI أعلى بـ ${gsniToWageRatio}×)`;
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { 
+                            title: { 
+                                display: true, 
+                                text: 'السنة', 
+                                font: { size: 14, weight: 'bold', color: '#2c3e50' } 
+                            },
+                            grid: { 
+                                color: 'rgba(0,0,0,0.05)' 
+                            }
+                        },
+                        'y-left': {
+                            type: 'linear',
+                            position: 'left',
+                            title: { 
+                                display: true, 
+                                text: 'الأجر اليومي (غرام ذهب) | مؤشر GSNI', 
+                                font: { size: 12, weight: 'bold', color: '#2c3e50' } 
+                            },
+                            min: 0,
+                            max: 55,
+                            grid: { 
+                                color: 'rgba(0,0,0,0.05)' 
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    if (value === 0) return '0';
+                                    if (value === 10) return '10';
+                                    if (value === 20) return '20';
+                                    if (value === 30) return '30';
+                                    if (value === 40) return '40';
+                                    if (value === 50) return '50 غ/ذ';
+                                    if (value === 55) return '55';
+                                    return value.toFixed(0);
+                                },
+                                font: { size: 11 }
+                            }
+                        },
+                        'y-right': {
+                            type: 'linear',
+                            position: 'right',
+                            title: { 
+                                display: true, 
+                                text: 'سعر الذهب ($/غرام ÷ 10)', 
+                                font: { size: 12, weight: 'bold', color: '#f39c12' } 
+                            },
+                            min: 0,
+                            max: 15,
+                            grid: {
+                                drawOnChartArea: false
+                            },
+                            ticks: {
+                                color: '#f39c12',
+                                callback: function(value) {
+                                    return value.toFixed(1);
+                                }
                             }
                         }
                     }
                 }
-            },
-            scales: {
-                x: { 
-                    title: { 
-                        display: true, 
-                        text: 'السنة', 
-                        font: { size: 14, weight: 'bold', color: '#2c3e50' } 
-                    },
-                    grid: { 
-                        color: 'rgba(0,0,0,0.05)' 
-                    }
-                },
-                'y-left': {
-                    type: 'linear',
-                    position: 'left',
-                    title: { 
-                        display: true, 
-                        text: 'الأجر اليومي (غرام ذهب) | مؤشر GSNI', 
-                        font: { size: 12, weight: 'bold', color: '#2c3e50' } 
-                    },
-                    min: 0,
-                    max: 55,
-                    grid: { 
-                        color: 'rgba(0,0,0,0.05)' 
-                    },
-                    ticks: {
-                        callback: function(value) {
-                            if (value === 0) return '0';
-                            if (value === 10) return '10';
-                            if (value === 20) return '20';
-                            if (value === 30) return '30';
-                            if (value === 40) return '40';
-                            if (value === 50) return '50 غ/ذ';
-                            if (value === 55) return '55';
-                            return value.toFixed(0);
-                        },
-                        font: { size: 11 }
-                    }
-                },
-                'y-right': {
-                    type: 'linear',
-                    position: 'right',
-                    title: { 
-                        display: true, 
-                        text: 'سعر الذهب ($/غرام ÷ 10)', 
-                        font: { size: 12, weight: 'bold', color: '#f39c12' } 
-                    },
-                    min: 0,
-                    max: 15,
-                    grid: {
-                        drawOnChartArea: false
-                    },
-                    ticks: {
-                        color: '#f39c12',
-                        callback: function(value) {
-                            return value.toFixed(1);
-                        }
-                    }
-                }
-            }
+            });
+            
+            // تأكيد أن القيم الحقيقية تُعرض
+            console.log('✅ التأكد من القيم الحقيقية:');
+            console.log(`- 1970: الأجر اليومي = ${dailyWageData[0].dailyWageGold} غرام ذهب`);
+            console.log(`- 1970: GSNI = ${dailyWageData[0].gsni}`);
+            console.log(`- 2025: الأجر اليومي = ${dailyWageData[dailyWageData.length-1].dailyWageGold} غرام ذهب`);
+            console.log(`- 2025: GSNI = ${dailyWageData[dailyWageData.length-1].gsni}`);
         }
-    });
-    
-    // تأكيد أن القيم الحقيقية تُعرض
-    console.log('✅ التأكد من القيم الحقيقية:');
-    console.log(`- 1970: الأجر اليومي = ${dailyWageData[0].dailyWageGold} غرام ذهب`);
-    console.log(`- 1970: GSNI = ${dailyWageData[0].gsni}`);
-    console.log(`- 2025: الأجر اليومي = ${dailyWageData[dailyWageData.length-1].dailyWageGold} غرام ذهب`);
-    console.log(`- 2025: GSNI = ${dailyWageData[dailyWageData.length-1].gsni}`);
-}
 
         // ================== رسم مخطط دائري لمكونات GSNI - الإصدار المصحح ==================
         function renderGSNIPieChart() {
             const canvas = document.getElementById('gsniPieChart');
             if (!canvas) return;
-            
+
+            // تدمير الرسم البياني السابق إذا كان موجوداً
+            if (gsniPieChart) {
+                gsniPieChart.destroy();
+            }
+
             const ctx = canvas.getContext('2d');
-            
+
             // تعيين أبعاد ثابتة للـ Canvas
             canvas.width = 300;
             canvas.height = 250;
-            
-            // بيانات المخطط الدائري
+
+            // بيانات المخطط الدائري مع مفاتيح الترجمة
             const gsniComponents = [
-                { label: 'الأدوية القانونية', value: 35, color: '#3498db' },
-                { label: 'الوهم الرقمي', value: 30, color: '#27ae60' },
-                { label: 'المخدرات غير المشروعة', value: 25, color: '#9b59b6' },
-                { label: 'الوهم الغذائي (سكر)', value: 10, color: '#f39c12' }
+                { labelKey: 'comp_legal_drugs', value: 35, color: '#3498db' },
+                { labelKey: 'comp_digital_illusion', value: 30, color: '#27ae60' },
+                { labelKey: 'comp_illegal_drugs', value: 25, color: '#9b59b6' },
+                { labelKey: 'comp_food_illusion', value: 10, color: '#f39c12' }
             ];
-            
-            new Chart(ctx, {
+
+            // استخدام الترجمة للحصول على النصوص
+            const t = getLang();
+            const translatedComponents = gsniComponents.map(comp => ({
+                ...comp,
+                label: t[comp.labelKey] || comp.labelKey
+            }));
+
+            gsniPieChart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: gsniComponents.map(item => item.label),
+                    labels: translatedComponents.map(item => item.label),
                     datasets: [{
-                        data: gsniComponents.map(item => item.value),
-                        backgroundColor: gsniComponents.map(item => item.color),
+                        data: translatedComponents.map(item => item.value),
+                        backgroundColor: translatedComponents.map(item => item.color),
                         borderWidth: 2,
                         borderColor: '#ffffff',
                         hoverOffset: 15
@@ -767,6 +828,7 @@
                                     const value = context.parsed;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = Math.round((value / total) * 100);
+                                    const t = getLang();
                                     return `${label}: ${value}% (${percentage}%)`;
                                 }
                             }
@@ -781,21 +843,111 @@
             });
         }
 
+        // ================== نظام الترجمة ==================
+        let currentLang = 'ar';
+        let translations = {};
+        let gsniPieChart = null;
+
+        // تحميل الترجمات
+        fetch('languages.json')
+            .then(response => response.json())
+            .then(data => {
+                translations = data;
+                updateLanguage(currentLang);
+            })
+            .catch(error => console.error('Error loading translations:', error));
+
+        // تحديث اللغة
+        function updateLanguage(lang) {
+            currentLang = lang;
+
+            // تحديث النصوص في الصفحة
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
+                }
+            });
+
+            // تحديث الرسوم البيانية
+            if (window.mainChart) {
+                const t = translations[lang] || {};
+
+                // تحديث تسميات البيانات
+                window.mainChart.data.datasets[0].label = t.chart_label_gold || 'سعر الذهب ($/غرام ÷ 10)';
+                window.mainChart.data.datasets[1].label = t.chart_label_gsni || 'مؤشر GSNI';
+                window.mainChart.data.datasets[2].label = t.chart_label_wage || 'الأجر اليومي (غرام ذهب)';
+
+                // تحديث عناوين المحاور
+                window.mainChart.options.scales.x.title.text = t.x_title || 'السنة';
+                window.mainChart.options.scales['y-left'].title.text = t.y_real_title || 'الأجر اليومي (غرام ذهب) | مؤشر GSNI';
+                window.mainChart.options.scales['y-right'].title.text = t.y_compressed_title || 'سعر الذهب ($/غرام ÷ 10)';
+
+                // تحديث أداة التلميح
+                window.mainChart.options.plugins.tooltip.callbacks.label = function(context) {
+                    const yearIndex = context.dataIndex;
+                    const yearData = dailyWageData[yearIndex];
+
+                    if (context.datasetIndex === 0) {
+                        const goldPerGram = yearData.goldPerOz / 31.1035;
+                        return (t.tooltip_gold_price || 'سعر الذهب: ') + '$' + goldPerGram.toFixed(2) + (t.tooltip_gold_suffix || '/غرام');
+                    } else if (context.datasetIndex === 1) {
+                        return (t.tooltip_gsni || 'مؤشر GSNI: ') + context.parsed.y.toFixed(2);
+                    } else {
+                        const gsniToWageRatio = (yearData.gsni / yearData.dailyWageGold).toFixed(1);
+                        return (t.tooltip_wage || 'الأجر اليومي: ') + context.parsed.y.toFixed(2) + (t.tooltip_wage_suffix || ' غرام ذهب') + (t.tooltip_gsni_higher || ' (GSNI أعلى بـ ') + gsniToWageRatio + (t.tooltip_times || '×)');
+                    }
+                };
+
+                window.mainChart.options.plugins.tooltip.callbacks.title = function(context) {
+                    return (t.tooltip_year || 'السنة: ') + context[0].label;
+                };
+
+                window.mainChart.update();
+            }
+
+            // تحديث اتجاه النص
+            if (lang === 'fa' || lang === 'ar') {
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.documentElement.setAttribute('lang', lang);
+            } else {
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.documentElement.setAttribute('lang', lang);
+            }
+
+            // تحديث الأزرار
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            const activeBtn = document.getElementById(`lang-${lang}`);
+            if (activeBtn) activeBtn.classList.add('active');
+
+            // تحديث الجدول والمخطط الدائري
+            populateTable();
+            renderGSNIPieChart();
+        }
+
+        // معالجات الأزرار
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('lang-ar').addEventListener('click', () => updateLanguage('ar'));
+            document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
+            document.getElementById('lang-fa').addEventListener('click', () => updateLanguage('fa'));
+            document.getElementById('lang-fr').addEventListener('click', () => updateLanguage('fr'));
+            document.getElementById('lang-zh').addEventListener('click', () => updateLanguage('zh'));
+        });
+
         // ================== تهيئة الصفحة ==================
         document.addEventListener('DOMContentLoaded', function() {
             populateTable();
             renderMainChart();
-            renderGSNIPieChart();
-            
+
             // حساب المؤشرات الإحصائية
             const firstWage = dailyWageData[0].dailyWageGold;
             const lastWage = dailyWageData[dailyWageData.length - 1].dailyWageGold;
             const wageDecline = ((lastWage - firstWage) / firstWage * 100).toFixed(1);
-            
+
             const firstGSNI = dailyWageData[0].gsni;
             const lastGSNI = dailyWageData[dailyWageData.length - 1].gsni;
             const gsniIncrease = ((lastGSNI - firstGSNI) / firstGSNI * 100).toFixed(1);
-            
+
             console.log(`✅ تم تحميل النموذج الرياضي الدقيق (الإصدار 2.1 - الإصلاح النهائي)`);
             console.log(`📉 انخفاض الأجر اليومي الحقيقي: ${wageDecline}% (1970-2025)`);
             console.log(`📈 زيادة مؤشر GSNI: ${gsniIncrease}% (1970-2025)`);
