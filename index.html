@@ -17,7 +17,7 @@
         }
         
         * { 
-            font-family: 'Segoe UI', 'Tahoma', 'Geneva', 'Verdana', sans-serif; 
+            font-family: 'Arial', sans-serif;
             box-sizing: border-box; 
         }
         
@@ -253,7 +253,164 @@
             margin: 0 auto;
             max-width: 300px;
         }
-        
+
+        /* تنسيقات قسم البيانات الخام */
+        .raw-data-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid #dee2e6;
+            border-radius: 15px;
+            margin: 40px 0;
+            overflow: hidden;
+        }
+
+        .raw-data-header {
+            background: linear-gradient(to right, #495057, #6c757d);
+            color: white;
+            padding: 20px 30px;
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .raw-data-header:hover {
+            background: linear-gradient(to right, #343a40, #495057);
+        }
+
+        .raw-data-header h2 {
+            color: white;
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .toggle-icon {
+            font-size: 1.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .raw-data-content {
+            padding: 30px;
+            display: none;
+        }
+
+        .raw-data-content.show {
+            display: block;
+        }
+
+        .raw-data-intro {
+            background: rgba(52, 152, 219, 0.1);
+            border: 1px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .tab-container {
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .tab-btn {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-bottom: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab-btn:hover {
+            background: #e9ecef;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--accent-blue);
+            font-weight: bold;
+            border-color: var(--accent-blue);
+        }
+
+        .tab-content {
+            display: none;
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 0 8px 8px 8px;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .export-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .export-btn {
+            background: var(--accent-blue);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .export-btn:hover {
+            background: #2980b9;
+        }
+
+        .download-section {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffeaa7 100%);
+            border: 2px solid #f39c12;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .download-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .download-btn {
+            background: var(--accent-gold);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .download-btn:hover {
+            background: #e67e22;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -388,7 +545,7 @@
             <p data-key="conclusion_5"><strong>5. المعادلة النهائية:</strong> لكل 1% فقدان في الأجر الحقيقي، هناك <strong>42 وحدة وهم كيميائي</strong> إضافية.</p>
         </div>
 
-        <!-- ================== قسم منهجية GSNI الجديد ================== -->
+        <!-- قسم منهجية GSNI -->
         <div class="methodology-section" id="gsni-methodology">
             <h2 data-key="methodology_title">🔬 المنهجية العلمية: تعريف وبناء مؤشر GSNI العالمي</h2>
             <p class="subtitle" data-key="methodology_subtitle">Gold-Standard Narcotization Index | مؤشر التخدير المعياري بالذهب</p>
@@ -403,7 +560,7 @@
                 </div>
             </div>
             
-            <!-- المخطط الدائري التفاعلي للنسب - الإصدار المصحح -->
+            <!-- المخطط الدائري التفاعلي للنسب -->
             <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; margin: 30px 0;">
                 <div style="flex: 1; min-width: 300px;">
                     <h3 data-key="components_title">🧩 مكونات المؤشر وأوزانها النسبية</h3>
@@ -518,7 +675,136 @@
                 <p style="margin-top: 15px;" data-key="pledge"><strong>التعهد المنهجي:</strong> سيتم تحديث أوزان وعناصر المؤشر علناً مع تقدم البحث ونشر بيانات جديدة، مع الإبقاء على الشفافية الكاملة حول أي تغيير.</p>
             </div>
         </div>
-        <!-- ================== نهاية قسم منهجية GSNI ================== -->
+
+        <!-- قسم البيانات الخام -->
+        <div class="raw-data-section" id="rawDataSection">
+            <div class="raw-data-header" onclick="toggleRawDataSection()">
+                <h2 data-key="raw_data_title">📊 البيانات الخام الكاملة ومعلومات المصدر</h2>
+                <span class="toggle-icon" id="toggleIcon">▼</span>
+            </div>
+            
+            <div class="raw-data-content" id="rawDataContent">
+                <div class="raw-data-intro">
+                    <p data-key="raw_data_intro">يوفر هذا القسم الوصول الكامل إلى البيانات الخام المستخدمة في بناء النموذج، بالإضافة إلى روابط للمصادر الأصلية وطرق التحميل المختلفة. هذه الشفافية تهدف لضمان إمكانية التحقق وإعادة الاستخدام الأكاديمي للبيانات.</p>
+                </div>
+
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="main-data" data-key="tab_main_data">البيانات الرئيسية</button>
+                        <button class="tab-btn" data-tab="calculation-details" data-key="tab_calculation_details">تفاصيل الحسابات</button>
+                        <button class="tab-btn" data-tab="source-links" data-key="tab_source_links">روابط المصادر</button>
+                        <button class="tab-btn" data-tab="methodology" data-key="tab_methodology">المنهجية</button>
+                        <button class="tab-btn" data-tab="raw-numbers" data-key="tab_raw_numbers">الأرقام الخام</button>
+                    </div>
+
+                    <div id="main-data" class="tab-content active">
+                        <h4 data-key="main_data_title">البيانات الأساسية للنموذج</h4>
+                        <p data-key="main_data_desc">هذه هي البيانات الأساسية المستخدمة في بناء مؤشر GSNI وحساب العلاقات الرياضية:</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-key="th_year">السنة</th>
+                                    <th data-key="th_gold_price">سعر الذهب ($/أونصة)</th>
+                                    <th data-key="th_weekly_wage">الأجر الأسبوعي (غرام ذهب)</th>
+                                    <th data-key="th_daily_wage">الأجر اليومي (غرام ذهب)</th>
+                                    <th data-key="th_gsni">مؤشر GSNI</th>
+                                </tr>
+                            </thead>
+                            <tbody id="mainDataTable">
+                                <!-- سيتم ملؤه بواسطة JavaScript -->
+                            </tbody>
+                        </table>
+                        <div class="export-buttons">
+                            <button class="export-btn" onclick="exportTable('mainDataTable', 'csv')">
+                                <span>📊</span><span data-key="export_csv">تصدير CSV</span>
+                            </button>
+                            <button class="export-btn" onclick="exportTable('mainDataTable', 'excel')">
+                                <span>📈</span><span data-key="export_excel">تصدير Excel</span>
+                            </button>
+                            <button class="export-btn" onclick="exportTable('mainDataTable', 'json')">
+                                <span>🔗</span><span data-key="export_json">تصدير JSON</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="calculation-details" class="tab-content">
+                        <h4 data-key="calculation_details_title">الخطوات التفصيلية للحسابات</h4>
+                        <p data-key="calculation_details_desc">شرح مفصل لكيفية حساب كل عنصر من عناصر مؤشر GSNI:</p>
+                        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                            <h5 data-key="step1_title">الخطوة 1: حساب الأجر اليومي بالذهب</h5>
+                            <p data-key="step1_desc">الأجر اليومي = (الأجر الأسبوعي ÷ 5 أيام عمل) × (سعر الذهب/أونصة ÷ 31.1035)</p>
+                            
+                            <h5 data-key="step2_title">الخطوة 2: حساب مؤشر الانخفاض</h5>
+                            <p data-key="step2_desc">مؤشر الانخفاض = (الأجر في السنة t ÷ الأجر في 1970) × 100</p>
+                            
+                            <h5 data-key="step3_title">الخطوة 3: حساب مؤشر GSNI</h5>
+                            <p data-key="step3_desc">GSNI = (0.35 × مؤشر الأدوية) + (0.30 × مؤشر الوهم الرقمي) + (0.25 × مؤشر المخدرات) + (0.10 × مؤشر الوهم الغذائي)</p>
+                        </div>
+                    </div>
+
+                    <div id="source-links" class="tab-content">
+                        <h4 data-key="source_links_title">روابط المصادر الأصلية</h4>
+                        <p data-key="source_links_desc">المصادر الأولية المستخدمة في جمع البيانات:</p>
+                        <ul style="line-height: 2;">
+                            <li><strong data-key="source_gold_title">أسعار الذهب:</strong> <a href="https://www.nasdaq.com/markets/commodities.aspx" target="_blank" style="color: #3498db;">Nasdaq Commodities</a></li>
+                            <li><strong data-key="source_wage_title">بيانات الأجور:</strong> <a href="https://www.bls.gov/" target="_blank" style="color: #3498db;">Bureau of Labor Statistics</a></li>
+                            <li><strong data-key="source_gsni_title">مؤشرات الاستهلاك:</strong> <a href="https://www.samhsa.gov/" target="_blank" style="color: #3498db;">SAMHSA</a></li>
+                        </ul>
+                    </div>
+
+                    <div id="methodology" class="tab-content">
+                        <h4 data-key="methodology_tab_title">المنهجية العلمية المفصلة</h4>
+                        <p data-key="methodology_tab_desc">شرح شامل للمنهجية المستخدمة في بناء النموذج:</p>
+                        <div style="background: #f1f8ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                            <h5 data-key="data_collection_title">جمع البيانات</h5>
+                            <p data-key="data_collection_desc">تم جمع البيانات من مصادر رسمية متعددة خلال الفترة 1970-2025، مع التركيز على الدقة والتوافق الزمني.</p>
+                            
+                            <h5 data-key="normalization_title">التطبيع والمعالجة</h5>
+                            <p data-key="normalization_desc">تم تطبيع جميع القيم باستخدام الذهب كمرجع ثابت للقيمة، مما يضمن مقارنة عادلة عبر الزمن.</p>
+                        </div>
+                    </div>
+
+                    <div id="raw-numbers" class="tab-content">
+                        <h4 data-key="raw_numbers_title">الأرقام الخام بدون معالجة</h4>
+                        <p data-key="raw_numbers_desc">البيانات الأصلية كما تم جمعها من المصادر، قبل أي معالجة أو تطبيع:</p>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th data-key="th_year">السنة</th>
+                                    <th data-key="th_raw_gold">سعر الذهب الخام ($)</th>
+                                    <th data-key="th_raw_wage">الأجر الأسبوعي الخام ($)</th>
+                                    <th data-key="th_conversion">عامل التحويل</th>
+                                </tr>
+                            </thead>
+                            <tbody id="rawNumbersTable">
+                                <!-- سيتم ملؤه بواسطة JavaScript -->
+                            </tbody>
+                        </table>
+                        <div class="export-buttons">
+                            <button class="export-btn" onclick="exportTable('rawNumbersTable', 'csv')">
+                                <span>📊</span><span data-key="export_csv">تصدير CSV</span>
+                            </button>
+                            <button class="export-btn" onclick="exportTable('rawNumbersTable', 'json')">
+                                <span>🔗</span><span data-key="export_json">تصدير JSON</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="download-section">
+                    <h4 data-key="download_title">📥 تحميل إضافي</h4>
+                    <p data-key="download_description">تحميل شامل لجميع البيانات والملفات المرتبطة بالنموذج:</p>
+                    <div class="download-buttons">
+                        <button class="download-btn" onclick="downloadAllData()">
+                            <span>📊</span><span data-key="download_all_data">تحميل جميع البيانات</span>
+                        </button>
+                        <button class="download-btn" onclick="downloadSourceCode()">
+                            <span>💻</span><span data-key="download_source_code">تحميل الكود المصدري</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- تذييل الصفحة -->
         <div class="footnote" style="text-align: center; margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee;">
@@ -526,13 +812,13 @@
             <p data-key="acknowledgment_text">تم استخراج ومعالجة هذه البيانات وبناء النموذج الرياضي لمؤشر GSNI بالتعاون مع نموذج الذكاء الاصطناعي Gemini، لضمان الدقة الإحصائية والربط الموضوعي بين الأسواق المالية العالمية والبيانات البيولوجية والاجتماعية.</p>
             <p data-key="footer_design">تم تصميم هذا النموذج الرياضي الدقيق بنفس منهجية موقع <a href="https://mrt-alqarm.github.io/GoldOilp_us/" target="_blank" style="color: #3498db; text-decoration: none; font-weight: bold;" data-key="footer_link_text">"آلية الخسارة العالمية للقيمة الحقيقية"</a>.</p>
             <p data-key="footer_gsni">🔄 <strong>GSNI = Gold-Standard Narcotization Index</strong> | مؤشر التخدير المعياري بالذهب</p>
-            <p data-key="footer_update">📅 <strong>آخر تحديث للبيانات:</strong> ديسمبر 2024 | <strong>الإصدار:</strong> 2.1 (بمنهجية موسعة)</p>
+            <p data-key="footer_update">📅 <strong>آخر تحديث للبيانات:</strong> ديسمبر 2025 | <strong>الإصدار:</strong> 4.0 (قسم البيانات الخام)</p>
             <p data-key="footer_note">📊 <strong>ملاحظة منهجية:</strong> جميع الحسابات معتمدة على الذهب كمرجع قيمي ثابت. القيم المالية مقومة بالدولار الأمريكي للأغراض التوثيقية فقط.</p>
         </div>
     </div>
 
     <script>
-        // ================== البيانات المصححة رياضياً (مع الدخل اليومي) ==================
+        // ================== البيانات المصححة رياضياً ==================
         const dailyWageData = [
             // السنة, سعر الذهب/أونصة ($), الأجر الأسبوعي (غرام ذهب), الأجر اليومي (غرام ذهب), GSNI
             { year: 1970, goldPerOz: 38.9, weeklyWageGold: 251.0, dailyWageGold: 50.2, gsni: 1.0 },
@@ -547,27 +833,56 @@
             { year: 2025, goldPerOz: 4207.2, weeklyWageGold: 3.6, dailyWageGold: 0.72, gsni: 42.3 }
         ];
 
-        // ================== دالة للحصول على الترجمة الحالية ==================
+        // البيانات الخام
+        const rawNumbersData = [
+            { year: 1970, rawGoldPrice: 38.9, rawWeeklyWage: 285, conversionRate: 31.1035 },
+            { year: 1980, rawGoldPrice: 594.9, rawWeeklyWage: 191, conversionRate: 31.1035 },
+            { year: 1990, rawGoldPrice: 386.0, rawWeeklyWage: 325, conversionRate: 31.1035 },
+            { year: 1998, rawGoldPrice: 288.5, rawWeeklyWage: 456, conversionRate: 31.1035 },
+            { year: 2000, rawGoldPrice: 272.0, rawWeeklyWage: 472, conversionRate: 31.1035 },
+            { year: 2008, rawGoldPrice: 869.75, rawWeeklyWage: 568, conversionRate: 31.1035 },
+            { year: 2010, rawGoldPrice: 1225.0, rawWeeklyWage: 519, conversionRate: 31.1035 },
+            { year: 2015, rawGoldPrice: 1060.0, rawWeeklyWage: 532, conversionRate: 31.1035 },
+            { year: 2020, rawGoldPrice: 1877.1, rawWeeklyWage: 533, conversionRate: 31.1035 },
+            { year: 2025, rawGoldPrice: 4207.2, rawWeeklyWage: 654, conversionRate: 31.1035 }
+        ];
+
+        // ================== متغيرات النظام ==================
+        let currentLang = 'ar';
+        let translations = {};
+        let mainChart = null;
+        let gsniPieChart = null;
+
+        // ================== دوال مساعدة ==================
         function getLang() {
             return translations[currentLang] || translations['ar'] || {};
         }
 
-        // ================== ملء الجدول ==================
+        function toggleRawDataSection() {
+            const content = document.getElementById('rawDataContent');
+            const toggle = document.getElementById('toggleIcon');
+            
+            if (content.classList.contains('show')) {
+                content.classList.remove('show');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('show');
+                toggle.textContent = '▲';
+            }
+        }
+
+        // ================== ملء الجداول ==================
         function populateTable() {
             const tableBody = document.getElementById('dataTableBody');
             tableBody.innerHTML = '';
             
             dailyWageData.forEach(d => {
-                // حساب النسبة GSNI/الأجر اليومي
                 const gsniToWageRatio = (d.gsni / d.dailyWageGold).toFixed(1);
-                
-                // حساب القيمة المتبقية (1970 = 100%)
                 const baseWage = dailyWageData[0].dailyWageGold;
                 const remainingValue = (d.dailyWageGold / baseWage * 100).toFixed(1);
                 
                 const row = document.createElement('tr');
                 
-                // تلوين الصفوف حسب السنة
                 let rowColor = '#ffffff';
                 if (d.year === 1970) rowColor = '#e3f2fd';
                 if (d.year === 2000) rowColor = '#fff8e1';
@@ -576,7 +891,7 @@
                 
                 row.style.backgroundColor = rowColor;
                 const unit = getLang().unit_gram || 'غرام';
-                console.log('currentLang:', currentLang, 'unit:', unit);
+                
                 row.innerHTML = `
                     <td><strong>${d.year}</strong></td>
                     <td>${d.goldPerOz.toFixed(1)}</td>
@@ -595,17 +910,56 @@
             });
         }
 
+        function populateMainDataTable() {
+            const tableBody = document.getElementById('mainDataTable');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            dailyWageData.forEach(d => {
+                const row = document.createElement('tr');
+                const unit = getLang().unit_gram || 'غرام';
+                
+                row.innerHTML = `
+                    <td><strong>${d.year}</strong></td>
+                    <td>${d.goldPerOz.toFixed(2)}</td>
+                    <td>${d.weeklyWageGold.toFixed(2)} ${unit}</td>
+                    <td><strong>${d.dailyWageGold.toFixed(2)} ${unit}</strong></td>
+                    <td style="font-weight: bold; color: ${d.gsni > 20 ? '#e74c3c' : '#2c3e50'}">${d.gsni.toFixed(2)}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        function populateRawNumbersTable() {
+            const tableBody = document.getElementById('rawNumbersTable');
+            if (!tableBody) return;
+            
+            tableBody.innerHTML = '';
+            
+            rawNumbersData.forEach(d => {
+                const row = document.createElement('tr');
+                
+                row.innerHTML = `
+                    <td><strong>${d.year}</strong></td>
+                    <td>${d.rawGoldPrice.toFixed(2)}</td>
+                    <td>${d.rawWeeklyWage.toFixed(0)}</td>
+                    <td>${d.conversionRate}</td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
         // ================== الرسم البياني الرئيسي ==================
         function renderMainChart() {
             const ctx = document.getElementById('mainChart').getContext('2d');
             const years = dailyWageData.map(d => d.year);
             
-            // البيانات الحقيقية كما هي
             const goldPriceData = dailyWageData.map(d => (d.goldPerOz / 31.1035) / 10);
             const gsniData = dailyWageData.map(d => d.gsni);
             const wageData = dailyWageData.map(d => d.dailyWageGold);
             
-            window.mainChart = new Chart(ctx, {
+            mainChart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     labels: years,
@@ -637,12 +991,12 @@
                         },
                         {
                             label: 'الأجر اليومي (غرام ذهب)',
-                            data: wageData, // ⬅️ القيمة الحقيقية: 50.2 في 1970
+                            data: wageData,
                             borderColor: '#3498db',
                             backgroundColor: 'rgba(52, 152, 219, 0.1)',
                             borderWidth: 3,
                             tension: 0.3,
-                            yAxisID: 'y-left', // ⬅️ نفس محور GSNI
+                            yAxisID: 'y-left',
                             pointRadius: 6,
                             pointHoverRadius: 10,
                             pointBackgroundColor: '#3498db'
@@ -749,32 +1103,21 @@
                     }
                 }
             });
-            
-            // تأكيد أن القيم الحقيقية تُعرض
-            console.log('✅ التأكد من القيم الحقيقية:');
-            console.log(`- 1970: الأجر اليومي = ${dailyWageData[0].dailyWageGold} غرام ذهب`);
-            console.log(`- 1970: GSNI = ${dailyWageData[0].gsni}`);
-            console.log(`- 2025: الأجر اليومي = ${dailyWageData[dailyWageData.length-1].dailyWageGold} غرام ذهب`);
-            console.log(`- 2025: GSNI = ${dailyWageData[dailyWageData.length-1].gsni}`);
         }
 
-        // ================== رسم مخطط دائري لمكونات GSNI - الإصدار المصحح ==================
+        // ================== رسم مخطط دائري لمكونات GSNI ==================
         function renderGSNIPieChart() {
             const canvas = document.getElementById('gsniPieChart');
             if (!canvas) return;
 
-            // تدمير الرسم البياني السابق إذا كان موجوداً
             if (gsniPieChart) {
                 gsniPieChart.destroy();
             }
 
             const ctx = canvas.getContext('2d');
-
-            // تعيين أبعاد ثابتة للـ Canvas
             canvas.width = 300;
             canvas.height = 250;
 
-            // بيانات المخطط الدائري مع مفاتيح الترجمة
             const gsniComponents = [
                 { labelKey: 'comp_legal_drugs', value: 35, color: '#3498db' },
                 { labelKey: 'comp_digital_illusion', value: 30, color: '#27ae60' },
@@ -782,7 +1125,6 @@
                 { labelKey: 'comp_food_illusion', value: 10, color: '#f39c12' }
             ];
 
-            // استخدام الترجمة للحصول على النصوص
             const t = getLang();
             const translatedComponents = gsniComponents.map(comp => ({
                 ...comp,
@@ -828,7 +1170,6 @@
                                     const value = context.parsed;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = Math.round((value / total) * 100);
-                                    const t = getLang();
                                     return `${label}: ${value}% (${percentage}%)`;
                                 }
                             }
@@ -843,21 +1184,180 @@
             });
         }
 
+        // ================== نظام التبويبات ==================
+        function initTabs() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // إزالة الكلاس النشط من جميع الأزرار والمحتوى
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+
+                    // إضافة الكلاس النشط للزر المضغوط
+                    this.classList.add('active');
+
+                    // عرض المحتوى المقابل
+                    const tabId = this.getAttribute('data-tab');
+                    const targetContent = document.getElementById(tabId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        }
+
+        // ================== تصدير البيانات ==================
+        function exportTable(tableId, format) {
+            const table = document.getElementById(tableId);
+            const rows = table.querySelectorAll('tr');
+            let csvContent = '';
+            let excelContent = '';
+            let jsonContent = [];
+
+            rows.forEach((row, index) => {
+                const cells = row.querySelectorAll('td, th');
+                const rowData = Array.from(cells).map(cell => {
+                    const temp = document.createElement('div');
+                    temp.innerHTML = cell.innerHTML;
+                    return temp.textContent.trim();
+                });
+
+                if (index === 0) {
+                    csvContent += rowData.join(',') + '\n';
+                } else {
+                    csvContent += rowData.map(field => `"${field}"`).join(',') + '\n';
+                }
+
+                if (format === 'json' && index > 0) {
+                    const headers = Array.from(rows[0].querySelectorAll('th')).map(th => {
+                        const temp = document.createElement('div');
+                        temp.innerHTML = th.innerHTML;
+                        return temp.textContent.trim();
+                    });
+                    const rowObject = {};
+                    headers.forEach((header, cellIndex) => {
+                        rowObject[header] = rowData[cellIndex];
+                    });
+                    jsonContent.push(rowObject);
+                }
+            });
+
+            if (format === 'csv') {
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', 'gsni_data.csv');
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            if (format === 'excel') {
+                const htmlContent = `
+                    <html>
+                        <head>
+                            <meta charset="UTF-8">
+                            <style>
+                                table { border-collapse: collapse; width: 100%; }
+                                th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+                                th { background-color: #f2f2f2; }
+                            </style>
+                        </head>
+                        <body>
+                            ${table.outerHTML}
+                        </body>
+                    </html>
+                `;
+                const blob = new Blob([htmlContent], { type: 'application/vnd.ms-excel' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', 'gsni_data.xls');
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+
+            if (format === 'json') {
+                const jsonString = JSON.stringify(jsonContent, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const link = document.createElement('a');
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', 'gsni_data.json');
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+        }
+
+        // ================== تحميل الملفات ==================
+        function downloadAllData() {
+            const allData = {
+                dailyWageData: dailyWageData,
+                rawNumbersData: rawNumbersData,
+                metadata: {
+                    generated: new Date().toISOString(),
+                    version: "4.0",
+                    description: "البيانات الكاملة لنموذج GSNI"
+                }
+            };
+            
+            const jsonString = JSON.stringify(allData, null, 2);
+            const blob = new Blob([jsonString], { type: 'application/json' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'gsni_complete_data.json');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function downloadSourceCode() {
+            // إنشاء ملف HTML يحتوي على الكود المصدري
+            const sourceCode = `<!DOCTYPE html>
+<html>
+<head>
+    <title>GSNI Source Code</title>
+</head>
+<body>
+    <h1>GSNI Mathematical Model - Source Code</h1>
+    <p>This file contains the complete source code for the GSNI mathematical model.</p>
+    <p>Generated on: ${new Date().toISOString()}</p>
+    
+    <h2>Data Structure:</h2>
+    <pre>${JSON.stringify(dailyWageData, null, 2)}</pre>
+    
+    <h2>Key Functions:</h2>
+    <ul>
+        <li>populateTable() - Fills the main data table</li>
+        <li>renderMainChart() - Creates the main line chart</li>
+        <li>renderGSNIPieChart() - Creates the GSNI components pie chart</li>
+        <li>exportTable() - Exports data in various formats</li>
+    </ul>
+</body>
+</html>`;
+
+            const blob = new Blob([sourceCode], { type: 'text/html' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'gsni_source_code.html');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
         // ================== نظام الترجمة ==================
-        let currentLang = 'ar';
-        let translations = {};
-        let gsniPieChart = null;
-
-        // تحميل الترجمات
-        fetch('languages.json')
-            .then(response => response.json())
-            .then(data => {
-                translations = data;
-                updateLanguage(currentLang);
-            })
-            .catch(error => console.error('Error loading translations:', error));
-
-        // تحديث اللغة
         function updateLanguage(lang) {
             currentLang = lang;
 
@@ -870,21 +1370,21 @@
             });
 
             // تحديث الرسوم البيانية
-            if (window.mainChart) {
+            if (mainChart) {
                 const t = translations[lang] || {};
 
                 // تحديث تسميات البيانات
-                window.mainChart.data.datasets[0].label = t.chart_label_gold || 'سعر الذهب ($/غرام ÷ 10)';
-                window.mainChart.data.datasets[1].label = t.chart_label_gsni || 'مؤشر GSNI';
-                window.mainChart.data.datasets[2].label = t.chart_label_wage || 'الأجر اليومي (غرام ذهب)';
+                mainChart.data.datasets[0].label = t.chart_label_gold || 'سعر الذهب ($/غرام ÷ 10)';
+                mainChart.data.datasets[1].label = t.chart_label_gsni || 'مؤشر GSNI';
+                mainChart.data.datasets[2].label = t.chart_label_wage || 'الأجر اليومي (غرام ذهب)';
 
                 // تحديث عناوين المحاور
-                window.mainChart.options.scales.x.title.text = t.x_title || 'السنة';
-                window.mainChart.options.scales['y-left'].title.text = t.y_real_title || 'الأجر اليومي (غرام ذهب) | مؤشر GSNI';
-                window.mainChart.options.scales['y-right'].title.text = t.y_compressed_title || 'سعر الذهب ($/غرام ÷ 10)';
+                mainChart.options.scales.x.title.text = t.x_title || 'السنة';
+                mainChart.options.scales['y-left'].title.text = t.y_real_title || 'الأجر اليومي (غرام ذهب) | مؤشر GSNI';
+                mainChart.options.scales['y-right'].title.text = t.y_compressed_title || 'سعر الذهب ($/غرام ÷ 10)';
 
                 // تحديث أداة التلميح
-                window.mainChart.options.plugins.tooltip.callbacks.label = function(context) {
+                mainChart.options.plugins.tooltip.callbacks.label = function(context) {
                     const yearIndex = context.dataIndex;
                     const yearData = dailyWageData[yearIndex];
 
@@ -899,11 +1399,11 @@
                     }
                 };
 
-                window.mainChart.options.plugins.tooltip.callbacks.title = function(context) {
+                mainChart.options.plugins.tooltip.callbacks.title = function(context) {
                     return (t.tooltip_year || 'السنة: ') + context[0].label;
                 };
 
-                window.mainChart.update();
+                mainChart.update();
             }
 
             // تحديث اتجاه النص
@@ -920,24 +1420,76 @@
             const activeBtn = document.getElementById(`lang-${lang}`);
             if (activeBtn) activeBtn.classList.add('active');
 
-            // تحديث الجدول والمخطط الدائري
+            // تحديث الجداول والمخطط الدائري
             populateTable();
+            populateMainDataTable();
+            populateRawNumbersTable();
             renderGSNIPieChart();
+            updateRawDataTabs();
         }
 
-        // معالجات الأزرار
+        function updateRawDataTabs() {
+            const t = getLang();
+
+            // تحديث نصوص أزرار التبويبات
+            const tabButtons = document.querySelectorAll('.tab-btn[data-key]');
+            tabButtons.forEach(button => {
+                const key = button.getAttribute('data-key');
+                if (t[key]) {
+                    button.textContent = t[key];
+                }
+            });
+
+            // تحديث نصوص أزرار التصدير
+            const exportButtons = document.querySelectorAll('.export-btn span[data-key]');
+            exportButtons.forEach(span => {
+                const key = span.getAttribute('data-key');
+                if (t[key]) {
+                    span.textContent = t[key];
+                }
+            });
+
+            // تحديث نصوص التحميل
+            const downloadTitle = document.querySelector('h4[data-key="download_title"]');
+            const downloadDesc = document.querySelector('p[data-key="download_description"]');
+            const downloadAllBtn = document.querySelector('span[data-key="download_all_data"]');
+            const downloadCodeBtn = document.querySelector('span[data-key="download_source_code"]');
+
+            if (downloadTitle && t.download_title) downloadTitle.textContent = t.download_title;
+            if (downloadDesc && t.download_description) downloadDesc.textContent = t.download_description;
+            if (downloadAllBtn && t.download_all_data) downloadAllBtn.textContent = t.download_all_data;
+            if (downloadCodeBtn && t.download_source_code) downloadCodeBtn.textContent = t.download_source_code;
+        }
+
+        // ================== تحميل الترجمات ==================
+        fetch('languages.json')
+            .then(response => response.json())
+            .then(data => {
+                translations = data;
+                updateLanguage(currentLang);
+            })
+            .catch(error => console.error('Error loading translations:', error));
+
+        // ================== تهيئة الصفحة ==================
         document.addEventListener('DOMContentLoaded', function() {
+            // تهيئة التبويبات
+            initTabs();
+
+            // ملء الجداول
+            populateTable();
+            populateMainDataTable();
+            populateRawNumbersTable();
+
+            // رسم الرسوم البيانية
+            renderMainChart();
+            renderGSNIPieChart();
+
+            // ربط أزرار اللغة
             document.getElementById('lang-ar').addEventListener('click', () => updateLanguage('ar'));
             document.getElementById('lang-en').addEventListener('click', () => updateLanguage('en'));
             document.getElementById('lang-fa').addEventListener('click', () => updateLanguage('fa'));
             document.getElementById('lang-fr').addEventListener('click', () => updateLanguage('fr'));
             document.getElementById('lang-zh').addEventListener('click', () => updateLanguage('zh'));
-        });
-
-        // ================== تهيئة الصفحة ==================
-        document.addEventListener('DOMContentLoaded', function() {
-            populateTable();
-            renderMainChart();
 
             // حساب المؤشرات الإحصائية
             const firstWage = dailyWageData[0].dailyWageGold;
@@ -948,7 +1500,7 @@
             const lastGSNI = dailyWageData[dailyWageData.length - 1].gsni;
             const gsniIncrease = ((lastGSNI - firstGSNI) / firstGSNI * 100).toFixed(1);
 
-            console.log(`✅ تم تحميل النموذج الرياضي الدقيق (الإصدار 2.1 - الإصلاح النهائي)`);
+            console.log(`✅ تم تحميل النموذج الرياضي الدقيق (الإصدار 4.0 - قسم البيانات الخام)`);
             console.log(`📉 انخفاض الأجر اليومي الحقيقي: ${wageDecline}% (1970-2025)`);
             console.log(`📈 زيادة مؤشر GSNI: ${gsniIncrease}% (1970-2025)`);
             console.log(`🧮 العلاقة العكسية: لكل 1% خسارة في الأجر، ${(lastGSNI / (100-Math.abs(parseFloat(wageDecline)))).toFixed(2)} وحدة GSNI إضافية`);
